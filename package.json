@@ -1,0 +1,40 @@
+{
+  "name": "panxuepeng",
+  "title": "阿菜",
+  "description": "",
+  "version": "0.0.1",
+  "private": false,
+  "engines": {
+    "node": "0.11.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {
+    "express": "latest",
+    "body-parser": "latest",
+	"connect-timeout": "latest",
+	"cookie-parser": "latest",
+	"connect-redis": "latest",
+	"compression": "latest",
+	"connect-multiparty": "latest",
+	"async": "latest",
+	
+    "mongoose": "latest",
+	"redis": "latest",
+    "underscore": "latest",
+    "dateformat": "latest",
+    "glob": "latest",
+    "qrcode-npm": "latest",
+    "log4js": "latest",
+    "shelljs": "latest",
+    "ncp": "latest",
+    "gm": "latest",
+    "nodemailer": "latest",
+    "npm": "latest",
+    "archiver": "latest"
+  },
+  "devDependencies": {
+    "express-debug": "latest",
+    "should": "latest",
+    "supertest": "latest"
+  }
+}
