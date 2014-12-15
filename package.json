@@ -1,6 +1,6 @@
 {
-  "name": "panxuepeng",
-  "title": "阿菜",
+  "name": "expressgo",
+  "title": "expressgo",
   "description": "",
   "version": "0.0.1",
   "private": false,
@@ -33,6 +33,7 @@
     "archiver": "latest"
   },
   "devDependencies": {
+    "supervisor": "latest",
     "express-debug": "latest",
     "should": "latest",
     "supertest": "latest"

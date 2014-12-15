@@ -18,10 +18,13 @@ require("./init/index")(app)
 require("./middleware/index")(app)
 
 // load models, events
-app.load(['app/models', 'app/events'])
+app.loadDirs(['app/models'])
+
+app.loadFunction('app/events/')
 
 // load routes
 require("./app/routes")(app)
+
 
 var port = app.conf.port || 80
 app.listen(port)
