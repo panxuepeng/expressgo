@@ -5,5 +5,5 @@ module.exports = function(app) {
 	require('./dirs')(app)
 	require('./helper')(app)
 	require('./event')(app)
-	require('./util')(app)
+	
 }

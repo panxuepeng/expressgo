@@ -1,9 +1,13 @@
 var express = require('express')
 
 module.exports = function(app) {
-	var index = require(app.root + '/app/controllers/index')
-	var users = require(app.root + '/app/controllers/users')
-
+	function loadController(name) {
+		return require(app.root + '/app/controllers/'+ name)
+	}
+	
+	var index = loadController('index')
+	var users = loadController('users')
+	
 	var router = express.Router()
 	router.get('/', index.wellcome)
 	router.get('/create', users.create)
