@@ -27,7 +27,7 @@ module.exports = function(app) {
 		return md5(md5(str) + str)
 	}
 	
-	return {
+	app.util = {
 		encode: encode
 		, decode: decode
 		, md5: md5

@@ -2,7 +2,7 @@
 var log4js = require('log4js')
 
 module.exports = function(app) {
-	var exports = {}
+	var logger = app.logger = {}
 	
 	log4js.configure(app.conf.log4js)
 
@@ -14,12 +14,12 @@ module.exports = function(app) {
 	var debugLogger = log4js.getLogger('debug')
 
 	// 运行时异常日志
-	exports.exception = function(err) {
+	logger.exception = function(err) {
 		exceptionLogger.error(err)
 	}
 
 	// 错误日志
-	exports.error = function(err, caller) {
+	logger.error = function(err, caller) {
 		if ( !err ) {
 			return
 			
@@ -41,7 +41,7 @@ module.exports = function(app) {
 	}
 
 	// 普通消息日志
-	exports.info = function(err, caller) {
+	logger.info = function(err, caller) {
 		if ( caller ) {
 			err = [caller, err]
 		}
@@ -49,7 +49,7 @@ module.exports = function(app) {
 	}
 
 	// 业务日志
-	exports.biz = function(err, caller) {
+	logger.biz = function(err, caller) {
 		if ( caller ) {
 			err = [caller, err]
 		}
@@ -57,7 +57,7 @@ module.exports = function(app) {
 	}
 
 	// 调试日志
-	exports.debug = function(err, caller) {
+	logger.debug = function(err, caller) {
 		if ( caller ) {
 			err = [caller, err]
 		}
@@ -69,12 +69,11 @@ module.exports = function(app) {
 		exceptionLogger.fatal('服务异常关闭')
 	})
 	
-	// 访问日志
+	// 记录访问日志
 	// 日志级别对应规则：
 	// http responses 3xx, level = WARN
 	// http responses 4xx & 5xx, level = ERROR
 	// else, level = INFO
 	app.use(log4js.connectLogger(accessLogger, {level: 'auto'}))
 	
-	return exports
 }

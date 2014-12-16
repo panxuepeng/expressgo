@@ -18,17 +18,14 @@ require("./init/index")(app)
 require("./middleware/index")(app)
 
 // load models, events
-app.loadDirs(['app/models'])
+app.loadDir('app/models')
+app.loadDir('app/events')
 
-app.loadFunction('app/events/')
-
-// load routes
+// load routes and controllers
 require("./app/routes")(app)
-
 
 var port = app.conf.port || 80
 app.listen(port)
 
-console.log(app.get('name') + ' started on port '+ port+ ' at '+ new Date)
-
+app.event.emit('onstart', port)
 module.exports = app

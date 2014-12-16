@@ -1,6 +1,8 @@
 
 module.exports = function(app) {
-	return {
+	var conf = {
 		port: 8080
 	}
+	
+	return conf
 }
