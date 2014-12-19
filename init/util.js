@@ -27,10 +27,10 @@ module.exports = function(app) {
 	}
 
 	var password = function(str) {
-		return encode(md5(str) + str)
+		return encode(str)
 	}
 	
-	var check = function(str, encodeStr) {
+	var checkPassword = function(str, encodeStr) {
 		return password(str) === encodeStr
 	}
 	
@@ -39,6 +39,8 @@ module.exports = function(app) {
 		, decode: decode
 		, md5: md5
 		, password: password
-		, check: check
+		, checkPassword: checkPassword
 	}
+	
+	return app.util
 }

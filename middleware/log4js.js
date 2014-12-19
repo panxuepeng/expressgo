@@ -63,11 +63,6 @@ module.exports = function(app) {
 		}
 		debugLogger.debug(err)
 	}
-
-
-	process.on('exit', function() {
-		exceptionLogger.fatal('服务异常关闭')
-	})
 	
 	// 记录访问日志
 	// 日志级别对应规则：

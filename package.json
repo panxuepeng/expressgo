@@ -36,7 +36,6 @@
     "supervisor": "latest",
     "express-debug": "latest",
     "mocha": "latest",
-    "superagent": "latest",
     "should": "latest",
     "supertest": "latest"
   }

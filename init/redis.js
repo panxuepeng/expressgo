@@ -16,6 +16,8 @@ module.exports = function(app) {
     })
 	
 	app.redis = client
+	
+	return client
 }
 
 /*

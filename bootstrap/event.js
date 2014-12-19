@@ -10,4 +10,5 @@ module.exports = function(app) {
 	util.inherits(Event, events.EventEmitter)
 
 	app.event = new Event()
+	return app.event
 }
