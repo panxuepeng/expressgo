@@ -2,7 +2,7 @@
   "name": "expressgo",
   "title": "ExpressGo 以 Express 为核心，Laravel 风格的 Node 版 WEB 应用开发框架",
   "description": "",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Panxuepeng",
     "email": "dushii@163.com"
