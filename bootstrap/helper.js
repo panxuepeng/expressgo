@@ -1,6 +1,7 @@
 var glob = require("glob")
 
 module.exports = function(app) {
+	app = app || {}
 	
 	// 批量加载某子目录下的js文件
 	app.load = function(pattern) {
@@ -14,4 +15,6 @@ module.exports = function(app) {
 			}
 		})
 	}
+	
+	return app
 }

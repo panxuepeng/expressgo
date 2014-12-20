@@ -1,10 +1,12 @@
 var crypto = require('crypto')
+var PasswordHash = require('phpass').PasswordHash
 
 module.exports = function(app) {
-	var conf = app.conf
+	var Hash = new PasswordHash()
+	var secretKey = app.conf.secretKey
 	
 	var encode = function(str, secret) {
-		secret = secret || conf.secretKey
+		secret = secret || secretKey
 		var cipher = crypto.createCipher('aes192', secret)
 		var enc = cipher.update(str, 'utf8', 'hex')
 		enc += cipher.final('hex')
@@ -12,7 +14,7 @@ module.exports = function(app) {
 	}
 
 	var decode = function(str, secret) {
-		secret = secret || conf.secretKey
+		secret = secret || secretKey
 		var decipher = crypto.createDecipher('aes192', secret)
 		var dec = decipher.update(str, 'hex', 'utf8')
 		dec += decipher.final('utf8')
@@ -27,11 +29,11 @@ module.exports = function(app) {
 	}
 
 	var password = function(str) {
-		return encode(str)
+		return Hash.hashPassword(md5(str)+secretKey)
 	}
 	
 	var checkPassword = function(str, encodeStr) {
-		return password(str) === encodeStr
+		return Hash.checkPassword(md5(str)+secretKey, encodeStr)
 	}
 	
 	app.util = {

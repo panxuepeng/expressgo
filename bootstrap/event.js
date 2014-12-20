@@ -2,7 +2,7 @@ var util = require("util")
 var events = require("events")
 
 module.exports = function(app) {
-
+	app = app || {}
 	function Event() {
 		events.EventEmitter.call(this)
 	}

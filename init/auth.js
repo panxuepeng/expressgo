@@ -72,7 +72,7 @@ module.exports = function(app) {
 		},
 		
 		// 将用户登出
-		logout: function(req, res) {
+		logout: function(req) {
 			
 		}
 	}
