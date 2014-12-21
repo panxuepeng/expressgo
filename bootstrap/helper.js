@@ -1,10 +1,12 @@
 var glob = require("glob")
+var shell = require("shelljs")
+var deepExtend = require('deep-extend')
 
 module.exports = function(app) {
-	app = app || {}
+	var helper = {}
 	
 	// 批量加载某子目录下的js文件
-	app.load = function(pattern) {
+	helper.load = function(pattern) {
 		console.log(['loadDir pattern', pattern])
 		
 		glob.sync(pattern).forEach(function(file) {
@@ -16,5 +18,24 @@ module.exports = function(app) {
 		})
 	}
 	
-	return app
+	helper.loadConf = function(name) {
+		var env = app.env || ""
+		if (env) {
+			env = env + '/'
+		}
+		
+		var _conf = require(app.root +'config/'+ name)(app)
+		var _envConf
+		var envFile = app.root + 'config/' + env + name + '.js'
+		
+		if (shell.test('-f', envFile)) {
+			console.log(['load envFile', envFile])
+			_envConf = require(envFile)(app)
+			_conf = deepExtend({}, _conf, _envConf)
+		}
+		
+		return _conf
+	}
+	
+	return helper
 }

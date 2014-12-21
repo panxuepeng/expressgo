@@ -71,4 +71,5 @@ module.exports = function(app) {
 	// else, level = INFO
 	app.use(log4js.connectLogger(accessLogger, {level: 'auto'}))
 	
+	return logger
 }

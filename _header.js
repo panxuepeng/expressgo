@@ -14,7 +14,7 @@ require('./bootstrap/index')(app)
 require(app.root +'config/index')(app)
 
 // load models
-app.load(app.root +'app/models/**/*.js')
+Helper.load(app.root +'app/models/**/*.js')
 
 // init, after config
 require(app.root +'init/index')(app)
@@ -23,7 +23,7 @@ require(app.root +'init/index')(app)
 require(app.root +'middleware/index')(app)
 
 // events
-app.load(app.root +'app/events/**/*.js')
+Helper.load(app.root +'app/events/**/*.js')
 
 app.event.emit('onbeforestart')
 
