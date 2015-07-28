@@ -1,6 +1,6 @@
 module.exports = function(app) {
-	return {
-		host: '127.0.0.1'
-		, port: 6379
-	}
+    return {
+        host: '127.0.0.1'
+        , port: 6379
+    }
 }

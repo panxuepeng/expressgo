@@ -1,5 +1,7 @@
 # Windows image file caches
 Thumbs.db
+.env
+.test
 ehthumbs.db
 node_modules
 storage

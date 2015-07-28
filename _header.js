@@ -5,7 +5,9 @@ var express = require('express')
 
 var app = express()
 
-app.set('name', 'expressgo')
+global.App = app
+
+app.set('name', 'shetuan')
 
 // bootstrap, before config
 require('./bootstrap/index')(app)
@@ -16,11 +18,8 @@ require(app.root +'config/index')(app)
 // load models
 Helper.load(app.root +'app/models/**/*.js')
 
-// init, after config
+// init, after config & models
 require(app.root +'init/index')(app)
-
-// middleware
-require(app.root +'middleware/index')(app)
 
 // events
 Helper.load(app.root +'app/events/**/*.js')

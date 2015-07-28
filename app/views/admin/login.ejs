@@ -1,0 +1,84 @@
+<% include head.ejs %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">登录管理后台</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/admin/login" method="post" role="form" id="userform">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="用户名" name="username" type="username" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="密码" name="password" type="password">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember">记住我
+                                </label>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <button type="submit"  href="admin/login" class="btn btn-lg btn-success btn-block">登录</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/jquery.min.js"></script>
+<script>
+~function($) {
+    var form = $("form")
+    
+    form.submit(function(){
+        if (form.data('submitting')) {
+            return 
+        }
+        
+        form.data('submitting', 'true')
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: form.attr('action'),
+            data: form.serialize(),
+            error: function(xhr, status) {
+                switch (status) {
+                    case 'timeout':
+                        alert('网络超时，请稍后再试')
+                    break
+                //    case 'parsererror':
+                //        alert('返回的内容不是JSON字符串')
+                //    break
+                    default:
+                        alert(xhr.responseText)
+                    
+                } 
+            },
+            success: function(data) {
+                if (data && typeof data === 'object') {
+                    if (data.status == 1) {
+                        location.href = data.result.url
+                    } else if (data.status == 0) {
+                        alert(data.error.msg)
+                    }
+                } else {
+                    alert('未知错误')
+                }
+            },
+            complete: function() {
+                form.data('submitting', '')
+            }
+        })
+        
+        return false
+    })
+}(jQuery)
+</script>
+</body>
+</html>
